@@ -1,0 +1,452 @@
+,Bus Name,Description,Is AC,Is NON-AC,Is Sleeper,Is Seater,Price,Rating,Is Weekday,Is Weekend,Is Holiday,Days until Booking
+0,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,550,4.8,True,False,False,1
+1,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,550,4.8,True,False,False,1
+2,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,1
+3,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,1
+4,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,1
+5,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,700,4.0,True,False,False,1
+6,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,499,4.7,True,False,False,1
+7,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,1
+8,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,1
+9,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,720,4.0,True,False,False,1
+10,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,700,4.0,True,False,False,1
+11,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,1
+12,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,500,4.0,True,False,False,1
+13,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,600,4.0,True,False,False,1
+14,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,True,False,False,1
+15,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,1
+16,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,True,False,False,1
+17,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,449,3.7,True,False,False,1
+18,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,699,3.7,True,False,False,1
+19,Lakshmi Gayatri Travels,non-ac sleeper (2 + 1),False,True,True,False,1999,3.8,True,False,False,1
+20,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,1
+21,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,True,False,False,1
+22,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,400,3.8,True,False,False,1
+23,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,1
+24,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,498,4.3,True,False,False,1
+25,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,560,4.0,True,False,False,1
+26,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1090,3.7,True,False,False,1
+27,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,1
+28,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,1
+29,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,570,4.4,True,False,False,1
+30,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,True,False,False,1
+31,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,513,4.4,True,False,False,1
+32,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,478,4.4,True,False,False,1
+33,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,True,False,False,1
+34,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,True,False,False,1
+35,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,599,4.1,True,False,False,1
+36,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,600,4.0,True,False,False,1
+37,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,599,3.9,True,False,False,1
+38,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,513,4.4,True,False,False,1
+39,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,1
+40,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,790,3.9,True,False,False,1
+41,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,True,False,False,1
+42,LVR Travels,ac sleeper (2 + 1),True,False,True,False,599,4.2,True,False,False,1
+43,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,1
+44,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,True,False,False,1
+45,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,550,4.0,True,False,False,1
+46,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,808,4.6,True,False,False,1
+47,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,475,4.6,True,False,False,1
+48,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,526,4.6,True,False,False,1
+49,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,772,4.6,True,False,False,1
+50,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,992,4.6,True,False,False,1
+51,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,2
+52,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,2
+53,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,2
+54,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,2
+55,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,2
+56,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,499,4.7,True,False,False,2
+57,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,2
+58,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,700,4.0,True,False,False,2
+59,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,2
+60,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,2
+61,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,2
+62,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,600,4.0,True,False,False,2
+63,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,500,4.0,True,False,False,2
+64,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,2
+65,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,700,4.0,True,False,False,2
+66,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1500,3.7,True,False,False,2
+67,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,True,False,False,2
+68,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1200,3.7,True,False,False,2
+69,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,2
+70,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1090,3.7,True,False,False,2
+71,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,2
+72,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,560,4.0,True,False,False,2
+73,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,False,2
+74,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,True,False,False,2
+75,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,True,False,False,2
+76,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,1500,3.7,True,False,False,2
+77,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,False,2
+78,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,400,3.8,True,False,False,2
+79,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,2
+80,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,True,False,False,2
+81,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,498,4.3,True,False,False,2
+82,Lakshmi Gayatri Travels,non-ac sleeper (2 + 1),False,True,True,False,1999,3.8,True,False,False,2
+83,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,2
+84,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,2
+85,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,600,4.0,True,False,False,2
+86,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,True,False,False,2
+87,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,790,3.9,True,False,False,2
+88,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,599,4.1,True,False,False,2
+89,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,910,3.9,True,False,False,2
+90,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,True,False,False,2
+91,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,True,False,False,2
+92,LVR Travels,ac sleeper (2 + 1),True,False,True,False,599,4.2,True,False,False,2
+93,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,2
+94,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,2
+95,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,2
+96,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,513,4.4,True,False,False,2
+97,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,2
+98,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,478,4.4,True,False,False,2
+99,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,True,False,False,2
+100,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,True,False,False,2
+101,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,550,4.0,True,False,False,2
+102,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,1060,4.6,True,False,False,2
+103,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,587,4.6,True,False,False,2
+104,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,952,4.6,True,False,False,2
+105,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,952,4.6,True,False,False,2
+106,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,587,4.6,True,False,False,2
+107,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,3
+108,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,3
+109,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,3
+110,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,3
+111,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,700,4.0,True,False,False,3
+112,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,549,4.7,True,False,False,3
+113,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,3
+114,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,3
+115,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,3
+116,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,3
+117,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,3
+118,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,3
+119,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,700,4.0,True,False,False,3
+120,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,500,4.0,True,False,False,3
+121,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,600,4.0,True,False,False,3
+122,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,3
+123,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,449,4.3,True,False,False,3
+124,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,True,False,False,3
+125,Lakshmi Gayatri Travels,non-ac seater (2 + 2),False,True,False,True,999,3.8,True,False,False,3
+126,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,560,4.0,True,False,False,3
+127,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,1500,3.7,True,False,False,3
+128,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,True,False,False,3
+129,Lakshmi Gayatri Travels,non-ac sleeper (2 + 1),False,True,True,False,1999,3.8,True,False,False,3
+130,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1500,3.7,True,False,False,3
+131,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,3
+132,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,False,3
+133,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1200,3.7,True,False,False,3
+134,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,3
+135,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,400,3.8,True,False,False,3
+136,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,True,False,False,3
+137,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,3
+138,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1090,3.7,True,False,False,3
+139,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,3
+140,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,True,False,False,3
+141,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,790,3.9,True,False,False,3
+142,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,700,4.0,True,False,False,3
+143,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,True,False,False,3
+144,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,True,False,False,3
+145,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,670,4.0,True,False,False,3
+146,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,478,4.4,True,False,False,3
+147,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,1099,4.1,True,False,False,3
+148,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,3
+149,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,True,False,False,3
+150,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,513,4.4,True,False,False,3
+151,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,3
+152,LVR Travels,ac sleeper (2 + 1),True,False,True,False,599,4.2,True,False,False,3
+153,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,True,False,False,3
+154,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,799,3.9,True,False,False,3
+155,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,3
+156,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,1090,4.0,True,False,False,3
+157,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,550,4.0,True,False,False,3
+158,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,587,4.6,True,False,False,3
+159,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,952,4.6,True,False,False,3
+160,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,952,4.6,True,False,False,3
+161,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,1067,4.6,True,False,False,3
+162,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,587,4.6,True,False,False,3
+163,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,4
+164,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,4
+165,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,4
+166,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,4
+167,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,4
+168,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,700,4.0,True,False,False,4
+169,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,699,4.7,True,False,False,4
+170,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,4
+171,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,4
+172,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,4
+173,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,4
+174,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,600,4.0,True,False,False,4
+175,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,700,4.0,True,False,False,4
+176,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,500,4.0,True,False,False,4
+177,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,900,4.0,True,False,False,4
+178,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,4
+179,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,4
+180,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,560,4.0,True,False,False,4
+181,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1200,3.7,True,False,False,4
+182,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,449,3.8,True,False,False,4
+183,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,499,4.3,True,False,False,4
+184,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,True,False,False,4
+185,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,1500,3.7,True,False,False,4
+186,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,4
+187,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,4
+188,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1500,3.7,True,False,False,4
+189,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,True,False,False,4
+190,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,True,False,False,4
+191,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,True,False,False,4
+192,Lakshmi Gayatri Travels,non-ac seater (2 + 2),False,True,False,True,999,3.8,True,False,False,4
+193,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1090,3.7,True,False,False,4
+194,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,False,4
+195,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,4
+196,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,670,4.0,True,False,False,4
+197,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,True,False,False,4
+198,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,1099,4.1,True,False,False,4
+199,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,700,4.0,True,False,False,4
+200,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,790,3.9,True,False,False,4
+201,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,True,False,False,4
+202,LVR Travels,ac sleeper (2 + 1),True,False,True,False,599,4.2,True,False,False,4
+203,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,4
+204,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,513,4.4,True,False,False,4
+205,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,4
+206,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,1090,4.0,True,False,False,4
+207,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,478,4.4,True,False,False,4
+208,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,True,False,False,4
+209,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,4
+210,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,999,3.9,True,False,False,4
+211,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,True,False,False,4
+212,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,4
+213,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,952,4.6,True,False,False,4
+214,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,587,4.6,True,False,False,4
+215,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,952,4.6,True,False,False,4
+216,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,632,4.6,True,False,False,4
+217,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,1109,4.6,True,False,False,4
+218,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,550,4.8,True,False,False,5
+219,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,5
+220,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,5
+221,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,1200,4.0,True,False,False,5
+222,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,990,3.7,True,False,False,5
+223,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,950,3.7,True,False,False,5
+224,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,1099,4.7,True,False,False,5
+225,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,5
+226,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,1100,4.0,True,False,False,5
+227,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,True,False,False,5
+228,zingbus plus,tata ac seater/sleeper,True,False,True,True,459,4.7,True,False,False,5
+229,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,1200,4.0,True,False,False,5
+230,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,1200,4.0,True,False,False,5
+231,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,700,4.0,True,False,False,5
+232,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.0,True,False,False,5
+233,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,1000,4.0,True,False,False,5
+234,Lakshmi Gayatri Travels,non-ac seater (2 + 2),False,True,False,True,999,3.8,True,False,False,5
+235,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,True,False,False,5
+236,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1500,3.7,True,False,False,5
+237,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,False,5
+238,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,990,3.7,True,False,False,5
+239,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,True,False,False,5
+240,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,699,3.8,True,False,False,5
+241,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1290,3.7,True,False,False,5
+242,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,990,3.7,True,False,False,5
+243,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1190,3.7,True,False,False,5
+244,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,False,5
+245,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,True,False,False,5
+246,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,True,False,False,5
+247,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,5
+248,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1700,3.7,True,False,False,5
+249,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,1500,3.7,True,False,False,5
+250,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,699,4.3,True,False,False,5
+251,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1190,3.7,True,False,False,5
+252,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,890,4.0,True,False,False,5
+253,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1200,3.7,True,False,False,5
+254,LVR Travels,ac sleeper (2 + 1),True,False,True,False,790,4.2,True,False,False,5
+255,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,990,3.9,True,False,False,5
+256,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,True,False,False,5
+257,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,1490,4.0,True,False,False,5
+258,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,True,False,False,5
+259,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,5
+260,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,950,3.9,True,False,False,5
+261,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,880,4.0,True,False,False,5
+262,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,5
+263,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,1099,4.1,True,False,False,5
+264,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,True,False,False,5
+265,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,1090,4.0,True,False,False,5
+266,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,5
+267,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,5
+268,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,True,False,False,5
+269,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,5
+270,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,5
+271,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,999,4.6,True,False,False,5
+272,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,1500,4.6,True,False,False,5
+273,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,True,False,False,5
+274,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,867,4.6,True,False,False,5
+275,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,True,False,False,5
+276,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,False,True,True,7
+277,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,False,True,True,7
+278,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,False,True,True,7
+279,zingbus plus,tata ac seater/sleeper,True,False,True,True,1141,4.7,False,True,True,7
+280,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,False,True,True,7
+281,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,False,True,True,7
+282,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,730,4.0,False,True,True,7
+283,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,False,True,True,7
+284,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,1000,4.0,False,True,True,7
+285,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,890,4.7,False,True,True,7
+286,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,769,4.7,False,True,True,7
+287,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,False,True,True,7
+288,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,600,4.0,False,True,True,7
+289,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,1000,4.0,False,True,True,7
+290,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,890,4.0,False,True,True,7
+291,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,False,True,True,7
+292,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1200,3.7,False,True,True,7
+293,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,False,True,True,7
+294,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,999,3.8,False,True,True,7
+295,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,False,True,True,7
+296,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,False,True,True,7
+297,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,False,True,True,7
+298,Lakshmi Gayatri Travels,non-ac seater (2 + 2),False,True,False,True,999,3.8,False,True,True,7
+299,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,600,4.0,False,True,True,7
+300,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,False,True,True,7
+301,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,False,True,True,7
+302,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,False,True,True,7
+303,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1500,3.7,False,True,True,7
+304,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,False,True,True,7
+305,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,699,4.3,False,True,True,7
+306,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,False,True,True,7
+307,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,1500,3.7,False,True,True,7
+308,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,False,True,True,7
+309,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1090,3.7,False,True,True,7
+310,LVR Travels,ac sleeper (2 + 1),True,False,True,False,790,4.2,False,True,True,7
+311,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,1290,4.0,False,True,True,7
+312,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,False,True,True,7
+313,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,False,True,True,7
+314,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,513,4.4,False,True,True,7
+315,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,513,4.4,False,True,True,7
+316,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,False,True,True,7
+317,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,False,True,True,7
+318,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,890,3.9,False,True,True,7
+319,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,1099,4.1,False,True,True,7
+320,AVR TRAVELS,ac sleeper (2 + 1),True,False,True,False,2500,3.6,False,True,True,7
+321,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,890,4.0,False,True,True,7
+322,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,670,4.0,False,True,True,7
+323,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,False,True,True,7
+324,AVR TRAVELS,ac seater/sleeper (2 + 1),True,False,True,True,2500,3.6,False,True,True,7
+325,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,790,3.9,False,True,True,7
+326,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,False,True,True,7
+327,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,False,True,True,7
+328,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,890,4.0,False,True,True,7
+329,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,False,True,True,7
+330,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,835,4.6,False,True,True,7
+331,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,835,4.6,False,True,True,7
+332,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,False,True,True,7
+333,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,1500,4.6,False,True,True,7
+334,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,True,8
+335,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,True,8
+336,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,1390,4.7,True,False,True,8
+337,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,730,4.0,True,False,True,8
+338,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,True,8
+339,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,True,8
+340,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,890,4.0,True,False,True,8
+341,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,1090,4.7,True,False,True,8
+342,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,769,4.7,True,False,True,8
+343,zingbus plus,tata ac seater/sleeper,True,False,True,True,655,4.7,True,False,True,8
+344,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,True,False,True,8
+345,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,890,4.0,True,False,True,8
+346,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,600,4.0,True,False,True,8
+347,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,True,False,True,8
+348,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,890,4.0,True,False,True,8
+349,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,True,False,True,8
+350,Prasanna Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1999,3.7,True,False,True,8
+351,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,True,8
+352,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,True,False,True,8
+353,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,599,3.7,True,False,True,8
+354,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1500,3.7,True,False,True,8
+355,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,600,4.0,True,False,True,8
+356,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,True,8
+357,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,True,8
+358,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,True,8
+359,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,699,4.3,True,False,True,8
+360,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1090,3.7,True,False,True,8
+361,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,499,3.7,True,False,True,8
+362,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,True,False,True,8
+363,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,True,8
+364,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,True,False,True,8
+365,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,True,8
+366,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,True,False,True,8
+367,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,999,3.8,True,False,True,8
+368,Lakshmi Gayatri Travels,non-ac seater (2 + 2),False,True,False,True,999,3.8,True,False,True,8
+369,LVR Travels,ac sleeper (2 + 1),True,False,True,False,790,4.2,True,False,True,8
+370,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,True,False,True,8
+371,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,True,False,True,8
+372,AVR TRAVELS,ac seater/sleeper (2 + 1),True,False,True,True,2500,3.6,True,False,True,8
+373,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,True,8
+374,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,1290,4.0,True,False,True,8
+375,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,True,8
+376,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,True,8
+377,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,666,3.9,True,False,True,8
+378,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,True,8
+379,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,1099,4.1,True,False,True,8
+380,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,790,3.9,True,False,True,8
+381,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,True,False,True,8
+382,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,True,8
+383,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,True,False,True,8
+384,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,670,4.0,True,False,True,8
+385,AVR TRAVELS,ac sleeper (2 + 1),True,False,True,False,2500,3.6,True,False,True,8
+386,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,890,4.0,True,False,True,8
+387,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,890,4.0,True,False,True,8
+388,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,835,4.6,True,False,True,8
+389,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,True,False,True,8
+390,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,1500,4.6,True,False,True,8
+391,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,True,False,True,8
+392,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,835,4.6,True,False,True,8
+393,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,9
+394,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,9
+395,Fresh Bus Electric,ac seater electric (2 + 2),True,False,False,True,500,4.8,True,False,False,9
+396,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,1090,4.7,True,False,False,9
+397,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,9
+398,Orange Tours and Travels,non-ac sleeper (2 + 1),False,True,True,False,730,4.0,True,False,False,9
+399,SVKDT Travels,ac sleeper (2 + 1),True,False,True,False,1390,4.7,True,False,False,9
+400,zingbus plus,tata ac seater/sleeper,True,False,True,True,458,4.7,True,False,False,9
+401,Orange Tours and Travels,volvo ac multiaxle sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,9
+402,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,9
+403,Yolo Bus,ac seater/sleeper (2 + 1),True,False,True,True,769,4.7,True,False,False,9
+404,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,9
+405,Orange Tours and Travels,bharat benz ac sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,9
+406,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,True,False,False,9
+407,Orange Tours and Travels,ac seater/sleeper (2 + 1),True,False,True,True,600,4.0,True,False,False,9
+408,Orange Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,520,4.0,True,False,False,9
+409,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,9
+410,Sri Maruthi Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,499,3.7,True,False,False,9
+411,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1999,3.7,True,False,False,9
+412,Sri Maruthi Travels,ac sleeper (2 + 1),True,False,True,False,599,3.7,True,False,False,9
+413,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1199,3.7,True,False,False,9
+414,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,9
+415,KKaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,600,4.0,True,False,False,9
+416,KVR Tours and Travels,ac sleeper (2 + 1),True,False,True,False,4000,3.8,True,False,False,9
+417,Lakshmi Gayatri Travels,non-ac seater (2 + 2),False,True,False,True,999,3.8,True,False,False,9
+418,Prasanna Travels,ac seater/sleeper (2 + 1),True,False,True,True,1500,3.7,True,False,False,9
+419,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,1090,3.7,True,False,False,9
+420,Lakshmi Gayatri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,999,3.8,True,False,False,9
+421,Divyasri Bus,ac sleeper (2 + 1),True,False,True,False,999,4.3,True,False,False,9
+422,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,9
+423,GMRK TOURS AND TRAVELS,volvo ac semi sleeper (2 + 2),True,False,True,False,699,4.3,True,False,False,9
+424,Morning Star Travels,non-ac sleeper (2 + 1),False,True,True,False,790,3.7,True,False,False,9
+425,Morning Star Travels,ac sleeper (2 + 1),True,False,True,False,890,3.7,True,False,False,9
+426,Pavan Travels (pvat),ac sleeper (2 + 1),True,False,True,False,819,4.3,True,False,False,9
+427,Bharathi Tours and Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,800,4.3,True,False,False,9
+428,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,9
+429,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,9
+430,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,498,4.4,True,False,False,9
+431,V Kaveri Travels,ac seater/sleeper (2 + 1),True,False,True,True,890,4.0,True,False,False,9
+432,AVR TRAVELS,ac seater/sleeper (2 + 1),True,False,True,True,2500,3.6,True,False,False,9
+433,Sai Sri Krishna Travels,ac sleeper (2 + 1),True,False,True,False,2000,3.9,True,False,False,9
+434,V Kaveri Travels,ac sleeper (2 + 1),True,False,True,False,1290,4.0,True,False,False,9
+435,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,9
+436,Tirumala Xpress,ac sleeper (2 + 1),True,False,True,False,599,3.9,True,False,False,9
+437,AVR TRAVELS,ac sleeper (2 + 1),True,False,True,False,2500,3.6,True,False,False,9
+438,Chandu Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,1213,4.1,True,False,False,9
+439,New Sai Krishna Travels,non-ac pushback seater (2 + 2),False,True,False,True,5000,3.8,True,False,False,9
+440,Sri K.V.R Travels,ac sleeper (2 + 1),True,False,True,False,1099,4.1,True,False,False,9
+441,NueGo,ac semi sleeper electric (2 + 2),True,False,True,False,542,4.4,True,False,False,9
+442,Sudha Sri Tours & Travels,ac sleeper (2 + 1),True,False,True,False,790,3.9,True,False,False,9
+443,V Kaveri Travels,non-ac seater/sleeper (2 + 1),False,True,True,True,670,4.0,True,False,False,9
+444,LVR Travels,ac sleeper (2 + 1),True,False,True,False,790,4.2,True,False,False,9
+445,Sri Krishna Travels,ac sleeper/semi sleeper (2 + 1),True,False,True,False,890,4.0,True,False,False,9
+446,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,835,4.6,True,False,False,9
+447,IntrCity SmartBus,"2+1(38)ac, sleeper, luxury",True,False,True,False,1500,4.6,True,False,False,9
+448,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,True,False,False,9
+449,IntrCity SmartBus,ac seater/sleeper (2 + 1),True,False,True,True,835,4.6,True,False,False,9
+450,IntrCity SmartBus,ac sleeper (2 + 1),True,False,True,False,1348,4.6,True,False,False,9

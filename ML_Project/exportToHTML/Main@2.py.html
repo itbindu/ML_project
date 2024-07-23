@@ -1,0 +1,438 @@
+<html>
+<head>
+<title>Main@2.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main@2.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">csv</span>
+<span class="s0">import </span><span class="s1">time</span>
+<span class="s0">from </span><span class="s1">datetime </span><span class="s0">import </span><span class="s1">datetime</span>
+<span class="s0">from </span><span class="s1">selenium </span><span class="s0">import </span><span class="s1">webdriver</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">common</span><span class="s2">.</span><span class="s1">by </span><span class="s0">import </span><span class="s1">By</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">common</span><span class="s2">.</span><span class="s1">keys </span><span class="s0">import </span><span class="s1">Keys</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support</span><span class="s2">.</span><span class="s1">ui </span><span class="s0">import </span><span class="s1">WebDriverWait</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">support </span><span class="s0">import </span><span class="s1">expected_conditions </span><span class="s0">as </span><span class="s1">EC</span>
+<span class="s0">from </span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">common</span><span class="s2">.</span><span class="s1">exceptions </span><span class="s0">import </span><span class="s1">TimeoutException</span>
+
+
+<span class="s0">def </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">booking_date_str</span><span class="s2">):</span>
+    <span class="s1">date_format </span><span class="s2">= </span><span class="s3">&quot;%d/%m/%Y&quot;</span>
+    <span class="s1">booking_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">booking_date_str</span><span class="s2">, </span><span class="s1">date_format</span><span class="s2">)</span>
+    <span class="s1">today </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">today</span><span class="s2">()</span>
+    <span class="s0">return </span><span class="s2">(</span><span class="s1">booking_date </span><span class="s2">- </span><span class="s1">today</span><span class="s2">).</span><span class="s1">days</span>
+
+
+<span class="s1">holiday_dates </span><span class="s2">= [</span>
+    <span class="s3">&quot;23/05/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;26/05/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;02/06/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;09/06/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;16/06/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;17/06/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;23/06/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;30/06/2024&quot;</span><span class="s2">,</span>
+    <span class="s3">&quot;07/07/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;14/07/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;17/07/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;21/07/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;28/07/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;04/08/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;11/08/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;15/08/2024&quot;</span><span class="s2">,</span>
+    <span class="s3">&quot;18/08/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;19/08/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;25/08/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;26/08/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;08/09/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;02/10/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;14/11/2024&quot;</span><span class="s2">, </span><span class="s3">&quot;25/12/2024&quot;</span><span class="s2">,</span>
+    <span class="s3">&quot;01/01/2025&quot;</span><span class="s2">, </span><span class="s3">&quot;14/01/2025&quot;</span><span class="s2">, </span><span class="s3">&quot;26/01/2025&quot;</span>
+<span class="s2">]</span>
+
+
+<span class="s0">def </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date_str</span><span class="s2">):</span>
+    <span class="s0">return </span><span class="s1">date_str </span><span class="s0">in </span><span class="s1">holiday_dates</span>
+
+<span class="s4"># WEBDRIVER</span>
+
+<span class="s1">driver </span><span class="s2">= </span><span class="s1">webdriver</span><span class="s2">.</span><span class="s1">Chrome</span><span class="s2">()</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+<span class="s4"># FROM STATION</span>
+<span class="s1">from_station_input </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">10</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+    <span class="s1">EC</span><span class="s2">.</span><span class="s1">element_to_be_clickable</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//input[@placeholder='From Station']&quot;</span><span class="s2">)))</span>
+<span class="s1">from_station_input</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">&quot;Hyderabad&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">from_station_input</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s1">Keys</span><span class="s2">.</span><span class="s1">ENTER</span><span class="s2">)</span>
+
+<span class="s4"># TO STATION</span>
+<span class="s1">to_station_input </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">10</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+    <span class="s1">EC</span><span class="s2">.</span><span class="s1">element_to_be_clickable</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//input[@placeholder='To Station']&quot;</span><span class="s2">)))</span>
+<span class="s1">to_station_input</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s3">&quot;Guntur&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+<span class="s1">to_station_input</span><span class="s2">.</span><span class="s1">send_keys</span><span class="s2">(</span><span class="s1">Keys</span><span class="s2">.</span><span class="s1">ENTER</span><span class="s2">)</span>
+
+<span class="s4"># DATE INPUT</span>
+<span class="s1">date_input </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">10</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+    <span class="s1">EC</span><span class="s2">.</span><span class="s1">element_to_be_clickable</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//input[@placeholder='Onward Journey Date']&quot;</span><span class="s2">)))</span>
+<span class="s1">date_input</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+
+<span class="s1">desired_date </span><span class="s2">= </span><span class="s3">&quot;17&quot;</span>
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;17/06/2024&quot;</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">f&quot;//span[text()='</span><span class="s0">{</span><span class="s1">desired_date</span><span class="s0">}</span><span class="s3">']&quot;</span><span class="s2">).</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">2</span><span class="s2">)</span>
+
+<span class="s4"># CLICK SEARCH BUTTON</span>
+<span class="s1">search_button </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">10</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+    <span class="s1">EC</span><span class="s2">.</span><span class="s1">element_to_be_clickable</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//button[contains(@class, 'btn-search')]&quot;</span><span class="s2">)))</span>
+<span class="s1">search_button</span><span class="s2">.</span><span class="s1">click</span><span class="s2">()</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+<span class="s4"># ALL BUS</span>
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">20</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+
+<span class="s4"># ONE BUS</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+<span class="s4"># WEEKDAY OR WEEKEND</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s4"># HOLIDAY</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Prepare CSV file....1</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;w&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+    <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s3">&quot;Bus Name&quot;</span><span class="s2">, </span><span class="s3">&quot;Description&quot;</span><span class="s2">, </span><span class="s3">&quot;Is AC&quot;</span><span class="s2">, </span><span class="s3">&quot;Is NON-AC&quot;</span><span class="s2">, </span><span class="s3">&quot;Is Sleeper&quot;</span><span class="s2">, </span><span class="s3">&quot;Is Seater&quot;</span><span class="s2">,</span>
+                     <span class="s3">&quot;Boarding Time&quot;</span><span class="s2">, </span><span class="s3">&quot;Arrival Time&quot;</span><span class="s2">, </span><span class="s3">&quot;Journey Time&quot;</span><span class="s2">, </span><span class="s3">&quot;Price&quot;</span><span class="s2">, </span><span class="s3">&quot;Available Seats&quot;</span><span class="s2">,</span>
+                     <span class="s3">&quot;Rating&quot;</span><span class="s2">, </span><span class="s3">&quot;Is Weekday&quot;</span><span class="s2">, </span><span class="s3">&quot;Is Weekend&quot;</span><span class="s2">, </span><span class="s3">&quot;Is Holiday&quot;</span><span class="s2">, </span><span class="s3">&quot;Days until Booking&quot;</span><span class="s2">])</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+<span class="s4"># Prepare CSV file....2</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com/bus_search/Hyderabad/3/Guntur/15/18-06-2024/O&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+<span class="s4"># Wait for the service cards container with a longer timeout</span>
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">5</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+
+<span class="s4"># Extract data only from within the service cards container</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;18/06/2024&quot;</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Append data to the CSV file</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;a&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+
+<span class="s4"># Prepare CSV file....3</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com/bus_search/Hyderabad/3/Guntur/15/19-06-2024/O&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">5</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;19/06/2024&quot;</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Append data to the CSV file</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;a&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+<span class="s4"># Prepare CSV file....4</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com/bus_search/Hyderabad/3/Guntur/15/20-06-2024/O&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">5</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;20/06/2024&quot;</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Append data to the CSV file</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;a&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+<span class="s4"># Prepare CSV file....5</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com/bus_search/Hyderabad/3/Guntur/15/21-06-2024/O&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">5</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;21/06/2024&quot;</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Append data to the CSV file</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;a&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+<span class="s4"># Prepare CSV file....6</span>
+
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com/bus_search/Hyderabad/3/Guntur/15/22-06-2024/O&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">5</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;22/06/2024&quot;</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Append data to the CSV file</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;a&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+<span class="s4"># Prepare CSV file....7</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com/bus_search/Hyderabad/3/Guntur/15/23-06-2024/O&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">5</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;23/06/2024&quot;</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Append data to the CSV file</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;a&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+<span class="s4"># Prepare CSV file....8</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;https://www.abhibus.com/bus_search/Hyderabad/3/Guntur/15/24-06-2024/O&quot;</span><span class="s2">)</span>
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">5</span><span class="s2">)</span>
+
+<span class="s0">try</span><span class="s2">:</span>
+    <span class="s1">service_cards_container </span><span class="s2">= </span><span class="s1">WebDriverWait</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">, </span><span class="s5">5</span><span class="s2">).</span><span class="s1">until</span><span class="s2">(</span>
+        <span class="s1">EC</span><span class="s2">.</span><span class="s1">visibility_of_element_located</span><span class="s2">((</span><span class="s1">By</span><span class="s2">.</span><span class="s1">ID</span><span class="s2">, </span><span class="s3">&quot;service-cards-container&quot;</span><span class="s2">)))</span>
+<span class="s0">except </span><span class="s1">TimeoutException</span><span class="s2">:</span>
+    <span class="s1">print</span><span class="s2">(</span><span class="s3">&quot;Timed out waiting for service cards container to load&quot;</span><span class="s2">)</span>
+    <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+    <span class="s1">exit</span><span class="s2">()</span>
+<span class="s1">service_cards </span><span class="s2">= </span><span class="s1">service_cards_container</span><span class="s2">.</span><span class="s1">find_elements</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;//div[@class='row card-body service-info lighter ']&quot;</span><span class="s2">)</span>
+
+<span class="s1">date </span><span class="s2">= </span><span class="s3">&quot;24/06/2024&quot;</span>
+<span class="s1">journey_date </span><span class="s2">= </span><span class="s1">datetime</span><span class="s2">.</span><span class="s1">strptime</span><span class="s2">(</span><span class="s1">date</span><span class="s2">, </span><span class="s3">&quot;%d/%m/%Y&quot;</span><span class="s2">)</span>
+<span class="s1">is_weekday </span><span class="s2">= </span><span class="s1">journey_date</span><span class="s2">.</span><span class="s1">weekday</span><span class="s2">() &lt; </span><span class="s5">5</span>
+<span class="s1">is_holiday_flag </span><span class="s2">= </span><span class="s1">is_holiday</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)</span>
+
+<span class="s4"># Append data to the CSV file</span>
+<span class="s0">with </span><span class="s1">open</span><span class="s2">(</span><span class="s3">&quot;bus.csv&quot;</span><span class="s2">, </span><span class="s3">&quot;a&quot;</span><span class="s2">, </span><span class="s1">newline</span><span class="s2">=</span><span class="s3">&quot;&quot;</span><span class="s2">) </span><span class="s0">as </span><span class="s1">csvfile</span><span class="s2">:</span>
+    <span class="s1">writer </span><span class="s2">= </span><span class="s1">csv</span><span class="s2">.</span><span class="s1">writer</span><span class="s2">(</span><span class="s1">csvfile</span><span class="s2">)</span>
+
+    <span class="s0">for </span><span class="s1">card </span><span class="s0">in </span><span class="s1">service_cards</span><span class="s2">:</span>
+        <span class="s1">bus_name </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//h5[@class='title']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">description </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//p[@class='sub-title']&quot;</span><span class="s2">).</span><span class="s1">text</span><span class="s2">.</span><span class="s1">lower</span><span class="s2">()</span>
+        <span class="s1">is_NONAC </span><span class="s2">= </span><span class="s3">&quot;non-ac&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_AC </span><span class="s2">= </span><span class="s0">not </span><span class="s1">is_NONAC</span>
+        <span class="s1">is_sleeper </span><span class="s2">= </span><span class="s3">&quot;sleeper&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">is_seater </span><span class="s2">= </span><span class="s3">&quot;seater&quot; </span><span class="s0">in </span><span class="s1">description</span>
+        <span class="s1">boarding_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='departure-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">arrival_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//span[@class='arrival-time text-sm']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">journey_time </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='chip  tertiary outlined sm travel-time col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">price </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//strong[@class='h5 fare']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s1">seats_available </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='text-grey']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+
+        <span class="s0">try</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s1">card</span><span class="s2">.</span><span class="s1">find_element</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">XPATH</span><span class="s2">, </span><span class="s3">&quot;.//div[@class='highRating col auto']&quot;</span><span class="s2">).</span><span class="s1">text</span>
+        <span class="s0">except</span><span class="s2">:</span>
+            <span class="s1">rating </span><span class="s2">= </span><span class="s3">&quot;Not Available&quot;</span>
+
+        <span class="s1">writer</span><span class="s2">.</span><span class="s1">writerow</span><span class="s2">([</span><span class="s1">bus_name</span><span class="s2">, </span><span class="s1">description</span><span class="s2">, </span><span class="s1">is_AC</span><span class="s2">, </span><span class="s1">is_NONAC</span><span class="s2">, </span><span class="s1">is_sleeper</span><span class="s2">, </span><span class="s1">is_seater</span><span class="s2">,</span>
+                         <span class="s1">boarding_time</span><span class="s2">, </span><span class="s1">arrival_time</span><span class="s2">, </span><span class="s1">journey_time</span><span class="s2">, </span><span class="s1">price</span><span class="s2">, </span><span class="s1">seats_available</span><span class="s2">,</span>
+                         <span class="s1">rating</span><span class="s2">, </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s0">not </span><span class="s1">is_weekday</span><span class="s2">, </span><span class="s1">is_holiday_flag</span><span class="s2">, </span><span class="s1">days_until</span><span class="s2">(</span><span class="s1">date</span><span class="s2">)])</span>
+
+<span class="s1">time</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">10</span><span class="s2">)</span>
+<span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">()</span>
+</pre>
+</body>
+</html>
